@@ -2,7 +2,7 @@ class Nghttp3 < Formula
   desc "HTTP/3 C Library"
   homepage "https://github.com/ngtcp2/nghttp3"
   url "https://github.com/ngtcp2/nghttp3/archive/draft-28.zip"
-  sha256 "abc25b8dc601f5b3fefe084ce50fcbdc63e3385621bee0cbfa7b57f9ec3e67c2"
+  sha256 "11bdeb68a095852677f0f5281b71e621d4bc29514fb1740c07864e5621058b93"
   license "MIT"
 
   bottle do
