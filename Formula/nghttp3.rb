@@ -20,6 +20,7 @@ class Nghttp3 < Formula
     depends_on "cmake" => :build
   end
 
+  depends_on "cmake" => :build
   depends_on "cunit" => :build
   depends_on "pkg-config" => :build
   depends_on "sphinx-doc" => :build
