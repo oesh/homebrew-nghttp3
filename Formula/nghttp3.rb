@@ -46,12 +46,10 @@ class Nghttp3 < Formula
     # requires thread-local storage features only available in 10.11+
     args << "--disable-threads" if MacOS.version < :el_capitan
 
-    mkdir "build" do 
-        system "cmake", "..", *std_cmake_args
-        system "make"
-        system "check"
-        system "install"
-    end
+    system "cmake", ".", *std_cmake_args
+    system "make"
+    system "check"
+    system "install"
   end
 
   test do
