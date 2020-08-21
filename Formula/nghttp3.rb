@@ -49,8 +49,8 @@ class Nghttp3 < Formula
 
     system "cmake", ".", *std_cmake_args
     system "make"
-    system "check"
-    system "install"
+    system "make", "check"
+    system "make", "install"
   end
 
   test do
