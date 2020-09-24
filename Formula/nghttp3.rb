@@ -13,44 +13,19 @@ class Nghttp3 < Formula
 
   head do
     url "https://github.com/ngtcp2/nghttp3.git"
-
-    depends_on "autoconf" => :build
-    depends_on "automake" => :build
-    depends_on "libtool" => :build
     depends_on "cmake" => :build
   end
 
   depends_on "cmake" => :build
-  depends_on "cunit" => :build
-  depends_on "pkg-config" => :build
-  depends_on "sphinx-doc" => :build
-  depends_on "c-ares"
-  depends_on "jansson"
-  depends_on "jemalloc"
-  depends_on "libev"
-  depends_on "libevent"
-  depends_on "openssl@1.1"
-
-  uses_from_macos "zlib"
 
   def install
     ENV.cxx11
-
-    args = %W[
-      --prefix=#{prefix}
-      --disable-silent-rules
-      --enable-app
-      --disable-python-bindings
-      --with-xml-prefix=/usr
-    ]
-
-    # requires thread-local storage features only available in 10.11+
-    args << "--disable-threads" if MacOS.version < :el_capitan
-
-    system "cmake", ".", *std_cmake_args
-    system "make"
-    system "make", "check"
-    system "make", "install"
+    mkdir "build" do
+        system "cmake", "..", *std_cmake_args
+        system "make"
+        system "make", "check"
+        system "make", "install"
+    end
   end
 
   test do
