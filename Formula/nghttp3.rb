@@ -27,7 +27,7 @@ class Nghttp3 < Formula
         system "make", "qpack"
         system "make", "install"
 
-        ohai "Insatlling nghttp3_qpack"
+        ohai "Installing nghttp3_qpack"
         bin.install "examples/qpack" => "nghttp3_qpack"
     end
   end
