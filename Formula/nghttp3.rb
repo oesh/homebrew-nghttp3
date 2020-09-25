@@ -24,16 +24,18 @@ class Nghttp3 < Formula
         system "cmake", "..", *std_cmake_args
         system "make"
         system "make", "check"
+        system "make", "qpack"
         system "make", "install"
+
+        ohai "Insatlling nghttp3_qpack"
+        bin.install "examples/qpack" => "nghttp3_qpack"
     end
   end
 
   test do
-    cd "build/examples" do 
-        system "echo \"hello\\tworld\\n\" > input.txt" 
-        system "./qpack", "encode", "input.txt", "output.txt"
-        system "./qpack", "decoder", "output.txt", "input2.txt"
-        system "diff", "input.txt", "input2.txt"
-    end 
+      (testpath/"testfile.txt").write("Hello\tworld\n\n")
+      system "#{bin}/nghttp3_qpack", "encode", "testfile.txt", "encoded.txt"
+      system "#{bin}/nghttp3_qpack", "decode", "encoded.txt", "decoded.txt"
+      system "diff", "testfile.txt", "decoded.txt"
   end
 end
